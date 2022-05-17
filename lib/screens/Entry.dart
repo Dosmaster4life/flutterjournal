@@ -30,7 +30,17 @@ class _EntryState extends State<Entry> {
 
 
 
+
           ),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            ),
+            onPressed: () {
+
+            },
+            child: Text('Save'),
+          )
         ],
       )
 
