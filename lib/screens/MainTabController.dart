@@ -40,7 +40,9 @@ class _MainTabControllerState extends State<MainTabController> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () { Navigator.push(
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () { Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => const Entry(title: "",),

@@ -20,12 +20,9 @@ class _JournalListState extends State<JournalList> {
     final itemList = <String>[];
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
-    final prefsMap = <String, dynamic>{};
     for (String key in keys) {
-      prefsMap[key] = prefs.get(key);
-      if (prefsMap[key] != "" && prefsMap[key].toString().contains(filter)) {
-        print(filter);
-        itemList.add(prefsMap[key]);
+      if (key != "" && key.toLowerCase().contains(filter.toLowerCase())) {
+        itemList.add(key);
       }
     }
     return itemList;
@@ -77,7 +74,8 @@ class _JournalListState extends State<JournalList> {
               width: 150 ,
                 child: TextField(
               controller: searchController,
-
+                  decoration: new InputDecoration(
+                      hintText: 'Search'),
               onChanged: (String value) async {
                 changed = true;
                 filterView(value);
@@ -87,19 +85,7 @@ class _JournalListState extends State<JournalList> {
 
           ]);
 
-      return Container(
-          alignment: Alignment.topRight,
-          child: SizedBox(
-              width: 150 ,
-              child: TextField(
-                controller: searchController,
 
-                onChanged: (String value) async {
-                  changed = true;
-                  filterView(value);
-                },
-
-              )));
 
 
   }
