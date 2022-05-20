@@ -9,21 +9,32 @@ class Entry extends StatefulWidget {
 }
 
 class _EntryState extends State<Entry> {
-  @override
+
+  final titleController = TextEditingController();
+  final textController = TextEditingController();
+
+  void dispose() {
+    titleController.dispose();
+    textController.dispose();
+
+  }
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text( "Journal Entry"),
       ),
       body: ListView(
         children: [
-         const TextField(
+         TextField(
+           controller: titleController,
            textAlign: TextAlign.center,
 
         decoration: InputDecoration(fillColor: Colors. white, filled: true,hintText: "Title"),
 
 
           ),   TextField(
+            controller: textController,
                     keyboardType: TextInputType.multiline,
                     maxLines: 15,
             decoration: InputDecoration(fillColor: Colors. white, filled: true,hintText: "Journal Entry"),
@@ -35,6 +46,7 @@ class _EntryState extends State<Entry> {
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlue)
             ),
             onPressed: () {
 
