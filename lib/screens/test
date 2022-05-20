@@ -1,0 +1,30 @@
+if (data.isEmpty) {
+      loadPrefs().then((value) =>
+      {
+        data = value.toList(),
+        setState(() {}),
+      });
+    }
+    if (data.isNotEmpty) {
+      return Column(
+          children: <Widget>[ TextField(
+            controller: searchController,
+            onChanged: (String value) async {
+              filterView(value);
+            },
+
+          ),
+            ListView(
+                children: data.map((item) {
+                  return ListTile(
+                    onTap: () {viewJournal(item);},
+                  leading: Text(item),
+                  );}).toList()
+
+
+            )
+          ]);
+    }
+      return Container();
+
+  }

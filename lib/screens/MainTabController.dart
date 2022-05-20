@@ -14,9 +14,13 @@ class MainTabController extends StatefulWidget {
   State<MainTabController> createState() => _MainTabControllerState();
 }
 
+
+
+
 class _MainTabControllerState extends State<MainTabController> {
   @override
   Widget build(BuildContext context) {
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -39,7 +43,7 @@ class _MainTabControllerState extends State<MainTabController> {
         floatingActionButton: FloatingActionButton(onPressed: () { Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Entry(),
+              builder: (context) => const Entry(title: "",),
             )); },
 
         ),
