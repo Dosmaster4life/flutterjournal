@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 
@@ -9,10 +10,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-
   @override
-
-   wipePrefs() async {
+  wipePrefs() async {
     final itemList = <String>[];
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
@@ -23,7 +22,7 @@ class _SettingsState extends State<Settings> {
 
   Widget build(BuildContext context) {
     return ListView(
-      children:  [
+      children: [
         ListTile(
           leading: Text("About"),
         ),
@@ -41,7 +40,3 @@ class _SettingsState extends State<Settings> {
     );
   }
 }
-
-
-
-

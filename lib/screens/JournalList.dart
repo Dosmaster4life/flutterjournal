@@ -1,9 +1,9 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'Entry.dart';
+
 class JournalList extends StatefulWidget {
   const JournalList({Key? key}) : super(key: key);
 
@@ -29,10 +29,13 @@ class _JournalListState extends State<JournalList> {
   }
 
   filterView(String value) {
-
-    setState(() {filter = value;});
+    setState(() {
+      filter = value;
+    });
   }
+
   bool changed = false;
+
   viewJournal(String info) {
     if (info.isEmpty) {
       info = "";
@@ -40,7 +43,9 @@ class _JournalListState extends State<JournalList> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Entry(title: info.isNotEmpty ? info : "",),
+          builder: (context) => Entry(
+            title: info.isNotEmpty ? info : "",
+          ),
         ));
   }
 
@@ -49,44 +54,36 @@ class _JournalListState extends State<JournalList> {
 
   Widget build(BuildContext context) {
     if (data.isEmpty || changed == true) {
-      loadPrefs().then((value) =>
-      {
-        data = value.toList(),
-        changed = false,
-        setState(() {}),
-      });
+      loadPrefs().then((value) => {
+            data = value.toList(),
+            changed = false,
+            setState(() {}),
+          });
     }
 
-      return Stack(
-
-          children: <Widget>[
-           Container(child:  ListView(
-                children: data.map((item) {
-                  return ListTile(
-                    onTap: () {viewJournal(item);},
-                  leading: Text(item),
-                  );}).toList()
-
-
-            )),Container(
-              alignment: Alignment.topRight,
-                child: SizedBox(
-              width: 150 ,
-                child: TextField(
-              controller: searchController,
-                  decoration: new InputDecoration(
-                      hintText: 'Search'),
-              onChanged: (String value) async {
-                changed = true;
-                filterView(value);
-              },
-
-            ))),
-
-          ]);
-
-
-
-
+    return Stack(children: <Widget>[
+      Container(
+          child: ListView(
+              children: data.map((item) {
+        return ListTile(
+          onTap: () {
+            viewJournal(item);
+          },
+          leading: Text(item),
+        );
+      }).toList())),
+      Container(
+          alignment: Alignment.topRight,
+          child: SizedBox(
+              width: 150,
+              child: TextField(
+                controller: searchController,
+                decoration: new InputDecoration(hintText: 'Search'),
+                onChanged: (String value) async {
+                  changed = true;
+                  filterView(value);
+                },
+              ))),
+    ]);
   }
 }
