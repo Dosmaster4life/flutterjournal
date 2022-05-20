@@ -16,7 +16,7 @@ class MainTabController extends StatefulWidget {
 
 class _MainTabControllerState extends State<MainTabController> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // Tab Controller used to switch from listview to settings
     return DefaultTabController(
       length: 2,
       child: Scaffold(

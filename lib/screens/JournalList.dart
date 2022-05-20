@@ -15,7 +15,7 @@ class _JournalListState extends State<JournalList> {
   @override
   String filter = "";
 
-  Future<List<String>> loadPrefs() async {
+  Future<List<String>> loadPrefs() async { // loads the list of entries
     final itemList = <String>[];
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
@@ -27,7 +27,7 @@ class _JournalListState extends State<JournalList> {
     return itemList;
   }
 
-  filterView(String value) {
+  filterView(String value) { // filters according to search
     setState(() {
       filter = value;
     });
@@ -35,11 +35,11 @@ class _JournalListState extends State<JournalList> {
 
   bool changed = false;
 
-  viewJournal(String info) {
+  viewJournal(String info) { // loads journal
     if (info.isEmpty) {
       info = "";
     }
-    Navigator.push(
+    Navigator.push( // goes to journal view
         context,
         MaterialPageRoute(
           builder: (context) => Entry(
@@ -51,7 +51,7 @@ class _JournalListState extends State<JournalList> {
   bool isLoaded = false;
   List data = [];
 
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // entry point
     if (data.isEmpty || changed == true) {
       loadPrefs().then((value) => {
             data = value.toList(),
@@ -62,7 +62,7 @@ class _JournalListState extends State<JournalList> {
 
     return Stack(children: <Widget>[
       Container(
-          child: ListView(
+          child: ListView( // list of journal entries
               children: data.map((item) {
         return ListTile(
           onTap: () {
@@ -75,7 +75,7 @@ class _JournalListState extends State<JournalList> {
           alignment: Alignment.topRight,
           child: SizedBox(
               width: 150,
-              child: TextField(
+              child: TextField( // Search bar
                 controller: searchController,
                 decoration: new InputDecoration(hintText: 'Search'),
                 onChanged: (String value) async {

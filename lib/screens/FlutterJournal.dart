@@ -12,7 +12,7 @@ class FlutterJoural extends StatefulWidget {
 
 class _FlutterJouralState extends State<FlutterJoural> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // Starts the app
     return MaterialApp(
       home: MainTabController(),
     );

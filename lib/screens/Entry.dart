@@ -12,7 +12,7 @@ class Entry extends StatefulWidget {
 }
 
 class _EntryState extends State<Entry> {
-  final titleController = TextEditingController();
+  final titleController = TextEditingController(); // used to look for text changes
   final textController = TextEditingController();
 
   void dispose() {
@@ -20,12 +20,12 @@ class _EntryState extends State<Entry> {
     textController.dispose();
   }
 
-  Future<void> saveFile() async {
+  Future<void> saveFile() async { // saves to a file
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(titleController.text, textController.text);
   }
 
-  Future<void> loadFile() async {
+  Future<void> loadFile() async { // loads the file
     if (widget.title != "") {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       titleController.text = widget.title;
@@ -36,7 +36,7 @@ class _EntryState extends State<Entry> {
     }
   }
 
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // code entry point
     loadFile();
 
     return Scaffold(

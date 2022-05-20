@@ -11,7 +11,7 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   @override
-  wipePrefs() async {
+  wipePrefs() async { // clears the local data
     final itemList = <String>[];
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
